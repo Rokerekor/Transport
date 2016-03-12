@@ -174,7 +174,6 @@ public class Fighter : ShipAI {
 		return distance;
 	}
 	public void commandOrder(GameObject order){
-		Debug.Log(order);
 		currentOrder = order;
 	}
 	public void commandEnterBay(){

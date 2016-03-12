@@ -31,11 +31,13 @@ public class SpawnFriendlies : Bay {
 		while(true){
 			if(Input.GetKeyDown(KeyCode.Alpha1)){
 				GameObject ship = sendShip();
-				Fighter fighter = ship.GetComponent<Fighter>();
-				fighter.setBay(gameObject);
-				fighter.commandLeaveBay();
-				fighter.setHome(transform.parent.gameObject);
-				yield return new WaitForSeconds(0.1f);
+				if(ship != null){
+					Fighter fighter = ship.GetComponent<Fighter>();
+					fighter.setBay(gameObject);
+					fighter.commandLeaveBay();
+					fighter.setHome(transform.parent.gameObject);
+					yield return new WaitForSeconds(0.1f);
+				}
 			}
 			yield return new WaitForFixedUpdate();
 		}

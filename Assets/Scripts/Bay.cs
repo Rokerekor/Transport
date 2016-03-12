@@ -38,4 +38,7 @@ public class Bay : MonoBehaviour {
 		}
 		return active;
 	}
+	public GameObject[] getShips(){
+		return ships;
+	}
 }

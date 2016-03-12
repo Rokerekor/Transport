@@ -39,6 +39,7 @@ public class ShipAI : MonoBehaviour {
 	protected virtual IEnumerator goTo(GameObject target, float dist){
 		float distance = Mathf.Infinity;
 		while(distance > dist){
+			if(target == null) break;
 			distance = Vector3.Distance(transform.position, target.transform.position);
 
 			if(distance > 2){
@@ -81,14 +82,14 @@ public class ShipAI : MonoBehaviour {
 			float prDot = Vector3.Dot(transform.position - bay.transform.position, bay.transform.right);
 			float aDot = Vector3.Dot(transform.up, -bay.transform.up);
 			float distance = Vector3.Distance(transform.position, bay.transform.position);
-			if(pDot < 2f && aDot < 0.5f){
+			if((pDot < 2f || pDot < -1f) && aDot < 0.5f){
 				if(prDot > 0){
 					targetPos += bay.transform.transform.up * 3f + bay.transform.right * 1.5f;
 				}else{
 					targetPos += bay.transform.transform.up * 3f  - bay.transform.right * 1.5f;
 				}
 			}else{
-				if(pDot < 0 && distance < 0.5f){
+				if(pDot < 0 && distance < 1f){
 					gameObject.SetActive(false);
 				}else if(distance < 1f){
 					setSpriteLayer((int)spriteLayer.enterShip);

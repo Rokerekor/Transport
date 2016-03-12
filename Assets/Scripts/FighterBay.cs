@@ -3,15 +3,17 @@ using System.Collections;
 
 public class FighterBay : Bay {
 	const int IDLECOUNT = 4;
-
-	void Start(){
+	void Awake(){
 		ships = new GameObject[10];
+	}
+	void Start(){
 		for(int i=0; i<ships.Length; i++){
 			ships[i] = (GameObject)Instantiate(shipPrefab, transform.position, transform.rotation);
 
 			Fighter newFighter = ships[i].GetComponent<Fighter>();
 			newFighter.setHome(transform.parent.gameObject);
 			newFighter.setBay(gameObject);
+			newFighter.transform.parent = transform;
 			ships[i].SetActive(false);
 			ships[i].GetComponent<Fighter>().setFriendly(false);
 
